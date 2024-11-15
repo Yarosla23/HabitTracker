@@ -14,6 +14,9 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  config.assets.debug = true
+  config.assets.digest = true
+
   # Enable server timing
   config.server_timing = true
 
@@ -59,12 +62,5 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
 
-  # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
-
-  # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
 end
