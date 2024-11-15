@@ -15,6 +15,8 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 
+
+
 gem "jbuilder"
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -27,7 +29,7 @@ end
 
 group :development do
   gem "web-console"
-
+  gem 'tailwindcss-rails'
 end
 
 group :test do
