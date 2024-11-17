@@ -7,12 +7,10 @@ module.exports = {
     './app/views/**/*.{erb,haml,html,slim}',
   ],
   theme: {
-    extend: {
-      colors: {
-        customBackground: '#1E1E1E',
-      },
-      fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+    extend: { 
+      colors: { 
+        customBackground: '#1E1E1E', 
+        headerColor: '#1C1C24',
       },
     },
   },

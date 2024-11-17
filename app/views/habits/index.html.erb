@@ -5,17 +5,15 @@
 
   <% content_for :title, "Habits" %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Habits</h1>
-    <%= link_to "Создать привычку", new_habit_path, class: "rounded-lg py-3 px-5 bg-blue-600  block font-medium" %>
+  <div class="flex justify-between items-center mb-5">
+    <h1 class="font-bold text-4xl">Ваши привычки</h1>
+    <%= link_to "Создать привычку", new_habit_path, class: "rounded-lg py-3 px-5 bg-gray-600 hover:bg-blue-600 rounded-2xl block font-medium" %>
   </div>
 
-  <div id="habits" class="min-w-full">
-    <% @habits.each do |habit| %>
-      <%= render habit %>
-      <p>
-        <%= link_to "Show this habit", habit, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
-  </div>
+  <div id="habits" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <% @habits.each do |habit| %>
+    <%= render habit %>
+  <% end %>
+</div>
+
 </div>

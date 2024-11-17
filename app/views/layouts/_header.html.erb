@@ -1,6 +1,11 @@
 
-<header class="bg-green-500 text-white p-2 rounded ">
-  <%= link_to "root_path", root_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-green-500 block font-medium" %>
-  <%= link_to "Список привычек", habits_path, class: "rounded-lg py-3 px-5 bg-blue-600  block font-medium" %>
-  <%= link_to "Профиль", profile_path, class: "rounded-lg py-3 px-5 bg-blue-600  block font-medium" %>
-</header>
+<header class="bg-headerColor font-size-2 p-2 rounded flex justify-center space-x-4 p-5 text-lg">
+
+    <div>
+    </div>
+    <%= nav_link_to "Главная", root_path %> 
+
+    <%= nav_link_to "Список привычек", habits_path %> 
+    <%= nav_link_to "Профиль", profile_path %>
+
+ </header>

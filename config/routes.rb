@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'home/index'
   devise_for :users
 
-  root "home#index"
-  resource :profile
+  resource :profile, only: %i[show edit update]
 
+  root 'home#index'
 end
