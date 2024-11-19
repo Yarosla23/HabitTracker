@@ -1,11 +1,16 @@
 
-<header class="bg-headerColor font-size-2 p-2 rounded flex justify-center space-x-4 p-5 text-lg">
+<header class="bg-headerColor p-5 rounded flex justify-between items-center text-lg">
 
     <div>
+    <h1 class="text-4xl font-bold text-center ">Habits Tracker</h1>
     </div>
-    <%= nav_link_to "Главная", root_path %> 
 
-    <%= nav_link_to "Список привычек", habits_path %> 
+    <nav class="flex space-x-4">
+
+    <%= nav_link_to "Главная", root_path %>
+
+    <%= nav_link_to "Список привычек", habits_path %>
     <%= nav_link_to "Профиль", profile_path %>
+    </nav>
 
  </header>
