@@ -15,6 +15,11 @@ gem 'importmap-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'view_component'
+gem 'tailwindcss-rails'
+
+gem 'telegram-bot-ruby'
+gem 'whenever', require: false
+
 
 gem 'jbuilder'
 
