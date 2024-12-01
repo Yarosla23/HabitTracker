@@ -18,17 +18,17 @@
 
   <div class="my-5">
     <%= form.label :description %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", style: "background-color: #2D2D3A; color: white;" %>
+    <%= form.text_area :description, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", style: "background-color: #2D2D3A; color: white;" %>
   </div>
 
   <div class="my-5">
     <%= form.label :tags %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", style: "background-color: #2D2D3A; color: white;" %>
+    <%= form.text_field :tags, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", style: "background-color: #2D2D3A; color: white;" %>
   </div>
 
   <div class="my-5">
     <%= form.label :image %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", style: "background-color: #2D2D3A; color: white;" %>
+    <%= form.file_field :image, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

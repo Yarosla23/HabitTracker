@@ -45,12 +45,13 @@ class BotService
           send_message(chat_id, "#{index + 1}. #{habit.title}")
         end
         @bot.listen do |habit_message|
-          binding.irb
           habit_index = habit_message.text.to_i - 1
           if habits[habit_index]
             send_message(chat_id, "Введите время для уведомления в формате 'HH:MM'.")
             @bot.listen do |time_message|
               if valid_time?(time_message.text)
+          binding.irb
+
                 habit = habits[habit_index]
                 habit.update!(send_at: Time.parse(time_message.text))
                 send_message(chat_id, "Время уведомления для привычки '#{habit.title}' установлено на #{time_message.text}.")

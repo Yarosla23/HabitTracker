@@ -1,21 +1,19 @@
-<div class="mx-auto md:w-2/3 w-full text-white">
-  <h1 class="font-bold text-4xl ">Profile</h1>
-      <%= render "form", habit: @habit %>
+<div class="mx-auto md:w-2/3 w-full text-white relative">
+  <h1 class="font-bold text-4xl">Profile</h1>
+  <%= render "form", habit: @habit %>
 
   <%= link_to "Back to habits", habits_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-gray-500" %>
+
+  <div class="absolute top-0 right-0 flex items-center space-x-2 bg-gray-800 p-2 rounded-lg mt-3">
+    <h1 class="text-sm font-bold">Привязка Telegram</h1>
+    <a href="<%= @telegram_link %>" target="_blank" class="btn btn-primary">
+      <%= image_tag 'icons/telegram.svg', class: "w-6 h-6" %>
+    </a>
+
+    <% if current_user.chat_id.present? %>
+      <p>Ваш Telegram аккаунт привязан.</p>
+    <% else %>
+    <a href="<%= @telegram_link %>" target="_blank">Перейти к боту</a>
+    <% end %>
+  </div>
 </div>
-
-
-
-
-<h1>Привязка Telegram</h1>
-<p>Нажмите на кнопку ниже, чтобы привязать Telegram к вашему аккаунту:</p>
-<a href="<%= @telegram_link %>" target="_blank" class="btn btn-primary">Перейти к боту</a>
-
-
-
-<% if current_user.chat_id.present? %>
-  <p>Ваш Telegram аккаунт привязан.</p>
-<% else %>
- <a href="<%= @telegram_link %>" target="_blank">Перейти к боту</a>
-<% end %>
