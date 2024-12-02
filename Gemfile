@@ -23,6 +23,8 @@ gem 'whenever', require: false
 
 gem 'jbuilder'
 
+gem 'carrierwave'
+
 gem 'bootsnap', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 

@@ -1,10 +1,23 @@
-<div class="mx-auto md:w-2/3 w-full text-white relative">
-  <h1 class="font-bold text-4xl">Profile</h1>
-  <%= render "form", habit: @habit %>
+<div class="mx-auto md:w-2/3 w-full text-white">
+  <h1 class="font-bold text-4xl text-center">Профиль</h1>
 
-  <%= link_to "Back to habits", habits_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-gray-500" %>
+  <div class="mt-5">
+    <div class="flex items-center justify-center">
+      <% if @profile.avatar.present? %>
+        <%= image_tag @profile.avatar.url, alt: 'Avatar', class: "rounded-full w-32 h-32" %>
+      <% else %>
+        <p class="text-lg">Аватар не установлен</p>
+      <% end %>
+    </div>
 
-  <div class="absolute top-0 right-0 flex items-center space-x-2 bg-gray-800 p-2 rounded-lg mt-3">
+    <div class="mt-5">
+      <h2 class="text-2xl font-semibold">Информация о пользователе</h2>
+      <p><strong>Имя пользователя:</strong> <%= @profile.username %></p>
+      <p><strong>Дата рождения:</strong> <%= @profile.birthday_date %></p>
+      <p><strong>Дополнительные опции:</strong> <%= @profile.options %></p>
+    </div>
+
+    <div class="absolute top-0 right-0 flex items-center space-x-2 bg-gray-800 p-2 rounded-lg mt-3">
     <h1 class="text-sm font-bold">Привязка Telegram</h1>
     <a href="<%= @telegram_link %>" target="_blank" class="btn btn-primary">
       <%= image_tag 'icons/telegram.svg', class: "w-6 h-6" %>
@@ -15,5 +28,43 @@
     <% else %>
     <a href="<%= @telegram_link %>" target="_blank">Перейти к боту</a>
     <% end %>
+  </div>
+
+    <div class="mt-5">
+      <h3 class="text-xl font-semibold">Достижения</h3>
+      <div class="flex items-center bg-gray-800 rounded-lg p-4 mt-2">
+        <div class="flex items-center justify-center w-10 h-10 bg-pink-100 rounded-full">
+          <span class="text-pink-500 text-lg font-bold">❤</span>
+        </div>
+        <div class="ml-4">
+          <p class="text-xl font-bold">1</p>
+          <p class="text-sm text-gray-400">Столько привычек достигнуто</p>
+        </div>
+      </div>
+
+      <div class="flex items-center bg-gray-800 rounded-lg p-4 mt-4">
+        <div class="flex items-center justify-center w-10 h-10 bg-pink-100 rounded-full">
+          <span class="text-pink-500 text-lg font-bold">~</span>
+        </div>
+        <div class="ml-4">
+          <p class="text-xl font-bold">12</p>
+          <p class="text-sm text-gray-400">Столько дней вы с нами</p>
+        </div>
+      </div>
+
+      <div class="flex items-center bg-gray-800 rounded-lg p-4 mt-4 mb-5">
+        <div class="flex items-center justify-center w-10 h-10 bg-pink-100 rounded-full">
+          <span class="text-pink-500 text-lg font-bold">Z</span>
+        </div>
+        <div class="ml-4">
+          <p class="text-xl font-bold">228</p>
+          <p class="text-sm text-gray-400">Количество задач</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-6">
+      <%= link_to 'Редактировать профиль', edit_user_profile_path(@profile), class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium" %>
+    </div>
   </div>
 </div>

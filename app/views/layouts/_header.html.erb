@@ -1,16 +1,20 @@
-
 <header class="bg-headerColor p-5 rounded flex justify-between items-center text-lg">
 
     <div>
     <h1 class="text-4xl font-bold text-center text-white">Habits Tracker</h1>
     </div>
 
-    <nav class="flex space-x-4">
-
+  <nav class="flex space-x-4">
     <%= nav_link_to "Главная", root_path %>
-
     <%= nav_link_to "Список привычек", habits_path %>
-    <%= nav_link_to "Профиль", profile_path %>
-    </nav>
 
- </header>
+    <% if current_user %>
+    <% if current_user.profile.present? %>
+      <%= nav_link_to "Профиль", user_profile_path(current_user) %>
+    <% else %>
+      <%= nav_link_to "Профиль", new_user_profile_path(current_user) %>
+    <% end %>
+  <% end %>
+
+  </nav>
+</header>
