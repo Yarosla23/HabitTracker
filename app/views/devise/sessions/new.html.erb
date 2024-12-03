@@ -1,26 +1,37 @@
-<h2>Log in</h2>
+<h2 class="text-center text-4xl font-bold mb-8 text-gray-200">Log In</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="max-w-lg mx-auto p-8 rounded-xl shadow-lg text-white">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="mb-6">
+      <%= f.label :email, class: "block text-lg font-semibold text-gray-300 mb-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",
+          class: "mt-1 block w-full text-lg rounded-lg border-gray-700 bg-gray-900 text-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50",
+          style: "background-color: #2D2D3A; color: white;" %>
+    </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="mb-6">
+      <%= f.label :password, class: "block text-lg font-semibold text-gray-300 mb-2" %>
+      <%= f.password_field :password, autocomplete: "current-password",
+          class: "mt-1 block w-full text-lg rounded-lg border-gray-700 bg-gray-900 text-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50",
+          style: "background-color: #2D2D3A; color: white;" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="mb-6 flex items-center">
+        <%= f.check_box :remember_me, class: "h-4 w-4 text-blue-500 border-gray-600 rounded focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+        <%= f.label :remember_me, class: "ml-2 text-gray-300 text-sm" %>
+      </div>
+    <% end %>
+
+    <div class="mt-8">
+      <%= f.submit "Log in",
+          class: "w-full bg-gray-600 hover:bg-gray-700 text-white text-lg font-semibold py-3 px-5 rounded-lg shadow-lg transition duration-300" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="mt-8 text-center text-white">
+    <%= render "devise/shared/links" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
