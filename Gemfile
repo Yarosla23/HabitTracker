@@ -21,6 +21,7 @@ gem 'telegram-bot-ruby'
 gem 'whenever', require: false
 
 
+gem 'chart-js-rails'
 gem 'jbuilder'
 
 gem 'carrierwave'

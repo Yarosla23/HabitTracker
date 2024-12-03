@@ -2,3 +2,4 @@
 
 require_relative "../config/application"
 require "importmap/commands"
+pin "chart.js", to: "https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"
