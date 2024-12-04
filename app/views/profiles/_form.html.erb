@@ -1,21 +1,29 @@
 <%= form_with(model: @profile, url: user_profile_path(@user), method: :post, class: "contents") do |form| %>
-  <%= form.label :avatar %>
-  <%= form.file_field :avatar %>
+  <div class="my-5">
+    <div class="relative">
+      <%= form.file_field :avatar, class: "hidden", id: "avatar-upload" %>
+      <label for="avatar-upload" class="cursor-pointer block py-2 px-4 bg-[#2D2D3A] text-white rounded-md w-1/4 text-center transition duration-200">
+        Выберите изображение
+      </label>
+      <div class="mt-3" id="image-preview-container">
+      </div>
+    </div>
+  </div>
 
   <div class="grid grid-cols-2 gap-10 w-full">
     <div>
       <div class="my-5">
-        <%= form.label :username %>
+        <%= form.label :username, class: "block text-white mb-2" %>
         <%= form.text_field :username, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", style: "background-color: #2D2D3A; color: white;" %>
       </div>
 
       <div class="my-5">
-        <%= form.label :birthday_date %>
+        <%= form.label :birthday_date, class: "block text-white mb-2" %>
         <%= form.date_field :birthday_date, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", style: "background-color: #2D2D3A; color: white;" %>
       </div>
 
       <div class="my-5">
-        <%= form.label :options %>
+        <%= form.label :options, class: "block text-white mb-2" %>
         <%= form.text_field :options, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", style: "background-color: #2D2D3A; color: white;" %>
       </div>
     </div>
@@ -25,3 +33,23 @@
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
+
+<script>
+  document.getElementById('avatar-upload').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const previewContainer = document.getElementById('image-preview-container');
+    previewContainer.innerHTML = ''; // Очистить предыдущие превью
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.alt = 'Preview';
+        img.classList.add('w-32', 'h-32', 'object-cover', 'rounded-lg');
+        previewContainer.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>

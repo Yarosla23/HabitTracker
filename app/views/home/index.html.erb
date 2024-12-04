@@ -1,88 +1,97 @@
-<div>
-  <canvas id="myBarChart"></canvas>
-</div>
+<body class=" text-white">
 
-<div>
-  <canvas id="myDoughnutChart"></canvas>
-</div>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl text-center font-semibold mb-8">Статистика</h1>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+      <!-- График Bar Chart -->
+      <div class="w-[850px] h-[500px] rounded-lg shadow-md p-6">
+        <canvas id="myBarChart"></canvas>
+      </div>
 
-<script>
-document.addEventListener('turbo:load', function () {
-  const barCtx = document.getElementById('myBarChart');
-  if (barCtx) {
-    const existingBarChart = Chart.getChart('myBarChart');
-    if (existingBarChart) {
-      existingBarChart.destroy();
-    }
+      <div class="w-[500px] h-[500px] rounded-lg shadow-md p-6">
+        <canvas id="myDoughnutChart"></canvas>
+      </div>
+    </div>
+  </div>
 
-    new Chart(barCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener('turbo:load', function () {
+      const barCtx = document.getElementById('myBarChart');
+      if (barCtx) {
+        const existingBarChart = Chart.getChart('myBarChart');
+        if (existingBarChart) {
+          existingBarChart.destroy();
         }
+
+        new Chart(barCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      }
+
+      const doughnutCtx = document.getElementById('myDoughnutChart');
+      if (doughnutCtx) {
+        const existingDoughnutChart = Chart.getChart('myDoughnutChart');
+        if (existingDoughnutChart) {
+          existingDoughnutChart.destroy();
+        }
+
+        const data = {
+          labels: ['Привычки', 'Достигнутые привычки'],
+          datasets: [{
+            label: 'My First Dataset',
+            data: [<%= @habits_count %>, 1],
+            backgroundColor: [
+              'rgb(12, 162, 235)',
+              'rgb(5, 205, 86)'
+            ],
+            hoverOffset: 4
+          }]
+        };
+
+        const plugin = {
+          id: 'customCanvasBackgroundColor',
+          beforeDraw: (chart, args, options) => {
+            const { ctx } = chart;
+            ctx.save();
+            ctx.globalCompositeOperation = 'destination-over';
+            ctx.fillStyle = options.color || '#99ffff';
+            ctx.fillRect(0, 0, chart.width, chart.height);
+            ctx.restore();
+          }
+        };
+
+        const doughnutConfig = {
+          type: 'doughnut',
+          data: data,
+          options: {
+            plugins: {
+              customCanvasBackgroundColor: {
+                color: '#1e1e1e',
+              }
+            }
+          },
+          plugins: [plugin],
+        };
+
+        new Chart(doughnutCtx, doughnutConfig);
       }
     });
-  }
-
-  const doughnutCtx = document.getElementById('myDoughnutChart');
-  if (doughnutCtx) {
-    const existingDoughnutChart = Chart.getChart('myDoughnutChart'); // Проверка существующего графика
-    if (existingDoughnutChart) {
-      existingDoughnutChart.destroy(); // Уничтожаем старый график, если он существует
-    }
-
-    const data = {
-      labels: ['Привычки', 'Достигнутые привычки'],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [<%= @habits_count %>, 1],
-        backgroundColor: [
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
-        hoverOffset: 4
-      }]
-    };
-
-    const plugin = {
-      id: 'customCanvasBackgroundColor',
-      beforeDraw: (chart, args, options) => {
-        const { ctx } = chart;
-        ctx.save();
-        ctx.globalCompositeOperation = 'destination-over';
-        ctx.fillStyle = options.color || '#99ffff';
-        ctx.fillRect(0, 0, chart.width, chart.height);
-        ctx.restore();
-      }
-    };
-
-    const doughnutConfig = {
-      type: 'doughnut',
-      data: data,
-      options: {
-        plugins: {
-          customCanvasBackgroundColor: {
-            color: '#1e1e1e',
-          }
-        }
-      },
-      plugins: [plugin],
-    };
-
-    new Chart(doughnutCtx, doughnutConfig);
-  }
-});
-</script>
+  </script>
+</body>
