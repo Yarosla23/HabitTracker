@@ -11,6 +11,8 @@ class ProfilesController < ApplicationController
   def show
     @user = current_user
     @profile = @user.profile || @user.build_profile
+    @days_registered = @user.days_registered
+    @habits_count = @user.habits_count
 
     if @user.telegram_token.present?
       @telegram_link = "https://t.me/habitd_tracker_bot?start=#{@user.telegram_token}"
