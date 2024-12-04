@@ -1,11 +1,19 @@
 class User < ApplicationRecord
+  
+  devise :database_authenticatable, :registerable,
+  :recoverable, :rememberable, :validatable,
+  :omniauthable, omniauth_providers: [:telegram, :google_oauth2, :facebook]
+  
   has_one :profile, dependent: :destroy
   has_many :habits
 
-
-
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  def self.from_omniauth(auth)
+    user = User.where(telegram_id: auth.uid).first_or_initialize
+    user.telegram_id = auth.uid
+    user.name = auth.info.username
+    user.save
+    user
+  end
 
 
   def days_registered

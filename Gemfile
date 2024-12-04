@@ -8,7 +8,13 @@ gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 gem 'sprockets-rails'
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-telegram'
+
 gem 'pg'
+gem 'dotenv-rails'
 
 gem 'importmap-rails'
 
