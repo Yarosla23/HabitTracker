@@ -38,7 +38,7 @@
   document.getElementById('avatar-upload').addEventListener('change', function(event) {
     const file = event.target.files[0];
     const previewContainer = document.getElementById('image-preview-container');
-    previewContainer.innerHTML = ''; // Очистить предыдущие превью
+    previewContainer.innerHTML = '';
 
     if (file) {
       const reader = new FileReader();
