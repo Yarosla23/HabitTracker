@@ -16,6 +16,7 @@ development:
   username: wlapp_db_admin
   password: wlapp-db-pas
   host: localhost
+  port: 5433
 
 
 test:
@@ -23,6 +24,7 @@ test:
   database: habit_test
   username: wlapp_db_admin
   password: wlapp-db-pas
+  port: 5433 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
