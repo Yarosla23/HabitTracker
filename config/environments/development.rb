@@ -16,8 +16,7 @@ Rails.application.configure do
 
   config.assets.debug = true
   config.assets.digest = true
-  config.hosts << "3bef-138-201-53-77.ngrok-free.app"
-
+  config.hosts << "02e4-168-119-243-1.ngrok-free.app"
   # Enable server timing
   config.server_timing = true
 
