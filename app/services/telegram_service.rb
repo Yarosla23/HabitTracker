@@ -8,8 +8,12 @@ class TelegramService
     bot.api.send_message(chat_id: chat_id, text: text)
   end
 
-  def self.register_user(chat_id, user)
-    return if user.chat_id == chat_id # Не обновляем, если уже зарегистрирован
-    user.update(chat_id: chat_id)
+  def self.register_user(chat_id, token)
+    user = User.find_by(telegram_token: token)
+    return if user.nil?
+
+    if user.chat_id != chat_id
+      user.update(chat_id: chat_id)
+    end
   end
 end
