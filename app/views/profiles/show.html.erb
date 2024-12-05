@@ -14,7 +14,7 @@
             <div class="flex justify-center my-4 gap-2">
             <div>
               <%= link_to 'Редактировать профиль', edit_user_profile_path(@profile),
-                class: "rounded-lg py-3 px-5 bg-gray-700 text-white font-medium" %>
+                class: "rounded-lg py-3 px-5 bg-gray-700 text-white font-medium hover:bg-gray-600" %>
             </div>
             <a href="<%= @telegram_link %>" target="_blank" class="btn btn-primary">
               <%= image_tag 'icons/telegram.svg', class: "w-6 h-6" %>
