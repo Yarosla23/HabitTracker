@@ -10,7 +10,6 @@ services:
     runtime: ruby
     plan: free
     build Command: "./bin/render-build.sh"
-# # preDeploy Command: "bundle exec rails db:migrate" # preDeploy Command only available on paid instance types
     start Command: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL

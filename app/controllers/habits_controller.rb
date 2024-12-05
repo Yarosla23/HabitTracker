@@ -17,7 +17,7 @@ class HabitsController < ApplicationController
     @habit = current_user&.habits&.new(habit_params)
 
     if @habit&.save
-      redirect_to @habit, notice: "Habit was successfully created."
+      redirect_to @habit, notice: "Новая привычка добавлена"
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class HabitsController < ApplicationController
 
   def update
     if @habit.update(habit_params)
-      redirect_to @habit, notice: "Habit was successfully updated."
+      redirect_to @habit, notice: "Привычка обновлена."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,20 +33,30 @@ class HabitsController < ApplicationController
 
   def destroy
     if @habit.destroy
-      redirect_to habits_path, status: :see_other, notice: "Habit was successfully destroyed."
+      redirect_to habits_path, status: :see_other, notice: "Привычка удалена"
     else
-      redirect_to habits_path, alert: "Failed to delete habit.", status: :unprocessable_entity
+      redirect_to habits_path, alert: "Упс. Не удалось удалить", status: :unprocessable_entity
     end
   end
+
+
+  def complete
+    if @habit.set_status('completed')
+      redirect_to @habit, notice: 'Статус привычки обновлен на "завершено".'
+    else
+      redirect_to @habit, alert: 'Не удалось обновить статус.'
+    end
+  end
+  
 
   private
 
   def set_habit
     @habit = current_user&.habits&.find_by(id: params[:id])
-    redirect_to habits_path, alert: "Habit not found or you do not have access." unless @habit
+    redirect_to habits_path, alert: "Привычка не найдена или у вас нет прав." if @habit.nil?
   end
 
   def habit_params
-    params.require(:habit).permit(:title, :description, :tags, :image)
+    params.require(:habit).permit(:title, :description, :tags, :status, :send_at, :user_id)
   end
 end

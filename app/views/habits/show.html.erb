@@ -6,10 +6,12 @@
 
     <%= render @habit %>
 
-    <%= link_to "Edit this habit", edit_habit_path(@habit), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this habit", edit_habit_path(@habit), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium " %>
     <%= link_to "Back to habits", habits_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Destroy this habit", @habit, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Завершить привычку", complete_habit_path(@habit), method: :patch, class: "button" %>
+
     </div>
   </div>
 </div>
