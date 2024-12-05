@@ -57,8 +57,8 @@
           const data = {
             labels: ['Привычки', 'Достигнутые привычки'],
             datasets: [{
-              label: 'My First Dataset',
-              data: [<%= @habits_count %>, 1], // Убедитесь, что это корректно рендерится сервером
+              label: 'Ваши привычки',
+              data: [<%= @habits_count %>, 1],
               backgroundColor: [
                 'rgb(12, 162, 235)',
                 'rgb(5, 205, 86)'
@@ -94,10 +94,8 @@
 
           new Chart(doughnutCtx, doughnutConfig);
         }
-      } else {
-        console.error('Chart.js не загрузился!');
       }
-    }, 5)
+    }, 50)
   });
 </script>
 </body>

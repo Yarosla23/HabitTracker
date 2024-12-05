@@ -11,10 +11,16 @@
             <% else %>
               <p class="text-lg">Аватар не установлен</p>
             <% end %>
-            <div class="flex justify-center my-4">
+            <div class="flex justify-center my-4 gap-2">
+            <div>
               <%= link_to 'Редактировать профиль', edit_user_profile_path(@profile),
                 class: "rounded-lg py-3 px-5 bg-gray-700 text-white font-medium" %>
             </div>
+            <a href="<%= @telegram_link %>" target="_blank" class="btn btn-primary">
+              <%= image_tag 'icons/telegram.svg', class: "w-6 h-6" %>
+            </a>
+        </div>
+
         </div>
       </div>
 
@@ -77,15 +83,9 @@
     </div>
     </div>
 
-    <div class="fixed top-24 right-0 flex items-center space-x-2 bg-gray-800 p-2 rounded-lg mt-3">
-      <h1 class="text-sm font-bold">Привязка Telegram</h1>
-      <a href="<%= @telegram_link %>" target="_blank" class="btn btn-primary">
-        <%= image_tag 'icons/telegram.svg', class: "w-6 h-6" %>
-      </a>
+    <div class="fixed top-24 right-0 flex items-center space-x-2 mt-3">
       <% if current_user.chat_id.present? %>
         <p>Ваш Telegram аккаунт привязан.</p>
-      <% else %>
-        <a href="<%= @telegram_link %>" target="_blank">Перейти к боту</a>
       <% end %>
     </div>
   </div>
