@@ -1,7 +1,8 @@
 <%= form_with(model: @profile, url: user_profile_path(@user), method: :post, class: "contents") do |form| %>
   <div class="my-5">
     <div class="relative">
-      <%= form.file_field :avatar, class: "hidden", id: "avatar-upload" value: @profile %>
+      <!-- Remove the value attribute from the file_field -->
+      <%= form.file_field :avatar, class: "hidden", id: "avatar-upload" %>
       <label for="avatar-upload" class="cursor-pointer block py-2 px-4 bg-[#2D2D3A] text-white rounded-md w-1/4 text-center transition duration-200">
         Выберите изображение
       </label>
@@ -30,7 +31,7 @@
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-gray-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
 
