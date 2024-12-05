@@ -24,12 +24,20 @@ class BotService
 
   def handle_start(message)
     chat_id = message.chat.id
-    user = User.find_by(chat_id: chat_id)
+    token = message.text.split(' ')[1] 
+
+    if  chat_id
+      user = User.find_by(chat_id: chat_id)
+    else 
+      user = User.find_by(telegram_token: token)
+    end
+
     if user
       user.update(chat_id: chat_id, telegram_token: nil)
       send_message(chat_id, "Здравствуйте! Начнем отслеживать задачи?")
     else
       send_message(chat_id, "Токен недействителен. Попробуйте снова.")
+      user.update(telegram_token: nil)
     end
   end
 
