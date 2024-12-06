@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
 
   def connect_telegram
-    current_user.update!(telegram_token: SecureRandom.hex(10))
+    current_user.update!(telegram_token: SecureRandom.hex(10)) if current_user.telegram_token.blank?
     @telegram_link = "https://t.me/habitd_tracker_bot?start=#{current_user.telegram_token}"
   end
 
