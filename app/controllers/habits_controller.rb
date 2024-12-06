@@ -57,6 +57,6 @@ class HabitsController < ApplicationController
   end
 
   def habit_params
-    params.require(:habit).permit(:title, :description, :tags, :status, :send_at, :user_id)
+    params.require(:habit).permit(:title, :description, :tags, :status, :send_at, :user_id, :image)
   end
 end

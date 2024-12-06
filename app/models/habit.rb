@@ -9,6 +9,16 @@ class Habit < ApplicationRecord
     'Продуктивность'
   ]
 
+  HABIT_IMAGES = [
+    "habit_images/abstr.png",
+    "habit_images/beautiful.png",
+    "habit_images/eat.png",
+    "habit_images/finance.png",
+    "habit_images/ocean.png",
+    "habit_images/present.png",
+    "habit_images/travel.png"
+].freeze
+
   STATUS = ['Выполняется', 'Не выполняется', 'Выполнена']
 
   validates :title, presence: true
@@ -30,5 +40,7 @@ class Habit < ApplicationRecord
       errors.add(:status, "Invalid status")
     end
   end
-
+  def self.habit_images
+    HABIT_IMAGES
+  end
 end
