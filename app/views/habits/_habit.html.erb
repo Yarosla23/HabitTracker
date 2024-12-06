@@ -3,7 +3,7 @@
     <div class="flex items-center mb-4">
       
       <div class="p-2 rounded-full">
-        <svg class="w-16 h-16 text-<%= status_color(habit.status) %>" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-16 h-16 <%= status_svg_color(habit.status) %>" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M12 22a10 10 0 100-20 10 10 0 000 20zm0-18a8 8 0 100 16 8 8 0 000-16zm-.75 4.25a.75.75 0 011.5 0v4.5h3a.75.75 0 010 1.5h-3.75a.75.75 0 01-.75-.75V8.25z" clip-rule="evenodd"></path>
         </svg>
       </div>
@@ -11,7 +11,6 @@
       <div class="ml-4">
         <h3 class="text-xl font-semibold"><%= habit.title %></h3>
         <p class="text-gray-400"><%= habit.tags %></p>
-        <h3 class="text-xl font-semibold"><%= habit.status %></h3>
       </div>
     </div>
       <div class="flex items-center justify-center h-full">

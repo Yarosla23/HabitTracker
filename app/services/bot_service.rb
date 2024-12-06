@@ -1,7 +1,7 @@
 require 'telegram/bot'
 
 class BotService
-  TOKEN = '7657188677:AAGqQRYT4Qt2RA6kDaYyWklD_KmAaUNvsQQ'
+  TOKEN = '7965719411:AAG4cVzYor_yj21nqoVZcSoZaPdrW4f0Kf0'
 
   def initialize
     @bot = Telegram::Bot::Client.new(TOKEN)
@@ -10,8 +10,8 @@ class BotService
   def start
     @bot.listen do |message|
       case message.text
-      when '/start'
-        handle_start(message)
+      when /^\/start\s+(.+)$/ || '/start'
+        handle_start(message, $1) 
       when '/habits'
         handle_set_habit_time(message)
       else
@@ -22,23 +22,24 @@ class BotService
 
   private
 
-  def handle_start(message)
+  def handle_start(message,token)
     chat_id = message.chat.id
     token = message.text.split(' ')[1] 
     user = User.find_by(chat_id: chat_id) || User.find_by(telegram_token: token)
-    
     if user
       user.update(chat_id: chat_id) if user.chat_id != chat_id
       send_message(chat_id, "Здравствуйте! Начнем отслеживать задачи?")
     else
+      
       send_message(chat_id, "Токен недействителен. Попробуйте снова.")
     end
   end
+  
 
   def handle_set_habit_time(message)
     chat_id = message.chat.id
     user = User.find_by(chat_id: chat_id)
-
+  
     if user
       habits = user.habits
       if habits.any?
@@ -52,10 +53,8 @@ class BotService
             send_message(chat_id, "Введите время для уведомления в формате 'HH:MM'.")
             @bot.listen do |time_message|
               if valid_time?(time_message.text)
-          binding.irb
-
                 habit = habits[habit_index]
-                habit.update!(send_at: Time.parse(time_message.text))
+                habit.update!(send_at: Time.zone.parse(time_message.text))
                 send_message(chat_id, "Время уведомления для привычки '#{habit.title}' установлено на #{time_message.text}.")
                 break
               else

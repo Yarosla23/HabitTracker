@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 
   def connect_telegram
     current_user.update!(telegram_token: SecureRandom.hex(10)) if current_user.telegram_token.blank?
-    @telegram_link = "https://t.me/habitd_tracker_bot?start=#{current_user.telegram_token}"
+    @telegram_link = "https://t.me/tracker_habit_AP_bot?start=#{current_user.telegram_token}"
   end
 
   def show
@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
     @habits_count = @user.habits_count
 
     if @user.telegram_token.present?
-      @telegram_link = "https://t.me/habitd_tracker_bot?start=#{@user.telegram_token}"
+      @telegram_link = "https://t.me/tracker_habit_AP_bot?start=#{@user.telegram_token}"
     else
       connect_telegram
     end

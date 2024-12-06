@@ -10,6 +10,19 @@ module HabitsHelper
     link_to name, path, class: class_name
   end
 
+  def status_svg_color(status)
+    case status
+    when 'Выполняется'
+      'text-yellow-500'  
+    when 'Не выполняется'
+      'text-red-400'    
+    when 'Выполнена'
+      'text-green-500'   
+    else
+      'text-gray-500'   
+    end
+  end
+  
   def status_color(status)
     case status
     when 'Выполняется'

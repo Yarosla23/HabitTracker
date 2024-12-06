@@ -28,7 +28,6 @@ Devise.setup do |config|
 
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email'
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email,profile'
-  config.omniauth :telegram, ENV['7657188677:AAGqQRYT4Qt2RA6kDaYyWklD_KmAaUNvsQQ'], ENV['TELEGRAM_API_HASH']
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

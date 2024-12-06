@@ -24,11 +24,11 @@ class Habit < ApplicationRecord
   validates :tags, inclusion: { in: TAGS }
   validates :status, inclusion: { in: STATUS }
 
-  def send_notification
-    return unless send_at && send_at <= Time.current
-
-    TelegramService.send_message(user.chat_id, "Напоминаю, что вам нужно выполнить привычку: #{name}")
-    update!(send_at: send_at + 1.day)  
+  def self.send_notifications
+    Habit.where("send_at <= ?", Time.current).find_each do |habit|
+      TelegramService.send_message(habit.user.chat_id, "Напоминаю, что вам нужно выполнить привычку: #{habit.name}")
+      habit.update!(send_at: habit.send_at + 1.day)
+    end
   end
 
   def set_status(new_status)

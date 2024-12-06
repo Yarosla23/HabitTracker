@@ -1,18 +1,22 @@
 namespace :telegram do
   desc "Запуск Telegram бота"
   task start: :environment do
-    bot_service = BotService.new
-    $running = true
-
-    Process.detach(fork do
+    begin
+      bot_service = BotService.new
       bot_service.start
-    end)
-
-    while $running
-      sleep 1  
+      puts "Бот успешно запущен."
+    rescue Telegram::Bot::Exceptions::ResponseError => e
+      if e.message.include?("Forbidden: bot was blocked by the user")
+        Rails.logger.warn("Пользователь заблокировал бота.")
+        puts "Бот был заблокирован пользователем. Ошибка: #{e.message}"
+      else
+        Rails.logger.error("Ошибка при запуске бота: #{e.message}")
+        puts "Ошибка при запуске бота: #{e.message}"
+      end
+    rescue StandardError => e
+      Rails.logger.error("Произошла непредвиденная ошибка: #{e.message}")
+      puts "Произошла непредвиденная ошибка: #{e.message}"
     end
-
-    puts "Бот остановлен."
   end
 
   desc "Остановка Telegram бота"

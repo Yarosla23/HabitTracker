@@ -25,6 +25,8 @@ gem 'tailwindcss-rails'
 
 gem 'telegram-bot-ruby'
 gem 'whenever', require: false
+gem 'sidekiq'
+gem 'sidekiq-cron'
 
 
 gem 'chart-js-rails'
