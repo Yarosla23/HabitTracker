@@ -10,7 +10,6 @@ class Habit < ApplicationRecord
   ]
 
   HABIT_IMAGES = [
-    "habit_images/abstr.png",
     "habit_images/beautiful.png",
     "habit_images/eat.png",
     "habit_images/finance.png",
@@ -21,7 +20,7 @@ class Habit < ApplicationRecord
 
   STATUS = ['Выполняется', 'Не выполняется', 'Выполнена']
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { in: 6..22 }
   validates :tags, inclusion: { in: TAGS }
   validates :status, inclusion: { in: STATUS }
 

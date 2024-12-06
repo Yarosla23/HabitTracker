@@ -1,0 +1,27 @@
+<div id="<%= dom_id habit %>">
+  <div class="max-w-4xl mx-auto bg-gray-800 text-white p-6 m-5 rounded-3xl shadow-lg">
+    <div class="flex items-center space-x-6">
+
+      <div class="flex-shrink-0">
+        <h3 class=" flex items-center text-2xl font-semibold pb-4"><%= habit.title %></h3>
+        <% if habit.image.present? %>
+          <%= image_tag habit.image, class: "w-96 h-80 object-cover rounded-3xl", alt: habit.title %>
+        <% else %>
+          <img src="https://via.placeholder.com/200x200" alt="Placeholder Image" class="w-96 h-96 object-cover rounded-3xl">
+        <% end %>
+      </div>
+
+      <div class="flex-grow">
+        <span class="inline-block py-1 px-3 mb-4 rounded-lg bg-blue-500 text-white ">
+          <%= habit.tags %>
+        </span>
+        <span class="inline-block py-1 px-3 mb-4 rounded-lg  ">
+
+          <p class=" ">  <%=tag_status(habit.status)%> </p>
+        </span>
+        
+          <p class="text-gray-400 mb-4 max-w-xs break-words"><%= habit.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
