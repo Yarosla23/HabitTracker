@@ -55,18 +55,18 @@
           }
 
           const data = {
-            labels: ['Привычки', 'Достигнутые привычки'],
+            labels: ['Достигнутые привычки', 'Не выполняющиеся привычки', 'В процессе выполнения'],
             datasets: [{
               label: 'Ваши привычки',
-              data: [<%= @habits_count %>, 1],
+              data: [<%= @completed_habits %>,  <%= @not_performed_habits %>,<%= @in_progress_habits %>],
               backgroundColor: [
                 'rgb(12, 162, 235)',
-                'rgb(5, 205, 86)'
+                'rgb(5, 205, 86)',
+                'rgb(144, 235, 186)'
               ],
               hoverOffset: 4
             }]
           };
-
           const plugin = {
             id: 'customCanvasBackgroundColor',
             beforeDraw: (chart, args, options) => {

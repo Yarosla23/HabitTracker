@@ -1,6 +1,10 @@
 class Habit < ApplicationRecord
   belongs_to :user
 
+  scope :completed, -> { where(status: "Выполнена") }
+  scope :in_progress, -> { where(status: "Выполняется") }
+  scope :not_performed, -> { where(status: "Не выполняется") }
+
   TAGS = [
     'Здровье',
     'Спорт',
