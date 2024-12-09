@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   }
   
   resources :habits do
+    resources :habit_tracks, only: [:create, :update]
     member do
       patch :complete
     end

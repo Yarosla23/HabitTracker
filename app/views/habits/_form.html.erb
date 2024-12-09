@@ -42,25 +42,20 @@
     <%= form.file_field :image, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 " %>
   </div>
 
-<div data-controller="slider">
-  <!-- Кнопка для прокрутки влево -->
-  <button type="button" data-action="click->slider#scrollLeft" class="slider-button left-0">←</button>
+  <div data-controller="slider">
+    <button type="button" data-action="click->slider#scrollLeft" class="slider-button left-0">←</button>
 
-  <!-- Слайдер (горизонтальная прокрутка) -->
-  <div class="overflow-x-auto" data-slider-target="slider">
-    <% Habit.habit_images.each do |image_path| %>
-      <label class="snap-center inline-block text-center">
-        <%= form.radio_button :image, image_path, class: "hidden peer" %>
-        <%= image_tag image_path, class: "w-32 h-32 object-cover border-2 border-gray-400 peer-checked:border-green-500 peer-checked:shadow-lg cursor-pointer rounded-md" %>
-      </label>
-    <% end %>
+    <div class="overflow-x-auto" data-slider-target="slider">
+      <% Habit.habit_images.each do |image_path| %>
+        <label class="snap-center inline-block text-center">
+          <%= form.radio_button :image, image_path, class: "hidden peer" %>
+          <%= image_tag image_path, class: "w-32 h-32 object-cover border-2 border-gray-400 peer-checked:border-green-500 peer-checked:shadow-lg cursor-pointer rounded-md" %>
+        </label>
+      <% end %>
+    </div>
+
+    <button type="button" data-action="click->slider#scrollRight" class="slider-button right-0">→</button>
   </div>
-
-  <!-- Кнопка для прокрутки вправо -->
-  <button type="button" data-action="click->slider#scrollRight" class="slider-button right-0">→</button>
-</div>
-
-
 
   <div class="inline">
     <%= form.submit habit.new_record? ? "Создать привычку" : "Обновить привычку", class: "rounded-lg py-3 px-5 bg-gray-600 text-white inline-block font-medium cursor-pointer" %>

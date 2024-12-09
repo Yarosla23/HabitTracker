@@ -12,7 +12,7 @@ class BotService
       case message.text
       when /^\/start\s+(.+)$/ || '/start'
         handle_start(message, $1) 
-      when '/habits'
+      when '/habits'  
         handle_set_habit_time(message)
       else
         send_message(message.chat.id, "Неизвестная команда. Напишите /start.")

@@ -13,5 +13,24 @@
       <%= button_to "Удалить привычку", @habit, method: :delete, class: "border border-blue-500 bg-gray-800 text-white-500 rounded-lg py-2 px-4 hover:text-white hover:bg-blue-500 transition duration-200" %>
     </div>
 
+<div id="calendar">
+  <% start_date = Date.today.beginning_of_month %>
+  <% end_date = Date.today.end_of_month %>
+  <% (start_date..end_date).each do |date| %>
+    <div class="day">
+      <span><%= date.strftime('%d %b') %></span>
+      <% habit_track = @habit.habit_tracks.find_by(date: date) %>
+      <% if habit_track %>
+        <%= button_to habit_track.completed ? '✔️' : '❌', 
+                      habit_habit_track_path(@habit, habit_track), 
+                      method: :patch, 
+                      params: { habit_track: { completed: !habit_track.completed } } %>
+      <% else %>
+        <%= button_to 'Mark', habit_habit_tracks_path(@habit), 
+                      method: :post, 
+                      params: { habit_track: { date: date, completed: true } } %>
+      <% end %>
+    </div>
+  <% end %>
   </div>
 </div>

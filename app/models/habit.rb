@@ -1,6 +1,7 @@
 class Habit < ApplicationRecord
   belongs_to :user
-
+  has_many :habit_tracks, dependent: :destroy
+  
   scope :completed, -> { where(status: "Выполнена") }
   scope :in_progress, -> { where(status: "Выполняется") }
   scope :not_performed, -> { where(status: "Не выполняется") }

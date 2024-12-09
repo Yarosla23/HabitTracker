@@ -1,17 +1,20 @@
 class HabitsController < ApplicationController
-  before_action :set_habit, only: %i[show edit update destroy]
+  before_action :set_habit, only: [:show, :edit, :update, :destroy]
 
   def index
     @habits = current_user&.habits || []
   end
 
-  def show; end
+  def show
+    @habit_tracks = @habit.habit_tracks.order(:date)
+  end
 
   def new
     @habit = current_user&.habits&.new || Habit.new
   end
 
-  def edit; end
+  def edit
+  end
 
   def create
     @habit = current_user&.habits&.new(habit_params)
