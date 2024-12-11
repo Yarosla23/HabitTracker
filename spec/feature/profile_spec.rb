@@ -8,13 +8,13 @@ RSpec.describe 'Profile Creation and Login', type: :system do
 
     visit new_user_profile_path(user)
     fill_in 'Username', with: 'JohnDoe'
-    fill_in 'Birthday date', with: '1990-01-01'
-    click_button 'Save'
+    fill_in 'Birthday date', with: '01-01-1990'
+    click_button 'Create Profile'
 
     expect(page).to have_content('JohnDoe')
     expect(page).to have_content('1990-01-01')
 
-    click_link 'Logout'
+    click_button 'Выйти'
     sign_in user
 
     visit user_profile_path(user)
