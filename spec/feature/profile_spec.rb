@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Profile Creation and Login', type: :system do
+
   let!(:user) { create(:user, email: 'user@example.com', password: 'password123') }
+  let!(:profile) { create(:profile, user: user) }
 
   it 'allows user to create a profile and view it after re-login' do
     sign_in user

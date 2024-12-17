@@ -7,12 +7,12 @@ class Habit < ApplicationRecord
   scope :not_performed, -> { where(status: "Не выполняется") }
 
   TAGS = [
-    'Здровье',
+    'Здоровье',
     'Спорт',
     'Правильное питание',
     'Чтение книг',
     'Продуктивность'
-  ]
+  ].freeze
 
   HABIT_IMAGES = [
     "habit_images/beautiful.png",
@@ -21,7 +21,7 @@ class Habit < ApplicationRecord
     "habit_images/ocean.png",
     "habit_images/present.png",
     "habit_images/travel.png"
-].freeze
+  ].freeze
 
   STATUS = ['Выполняется', 'Не выполняется', 'Выполнена']
 
@@ -37,13 +37,13 @@ class Habit < ApplicationRecord
   end
 
   def set_status(new_status)
-    binding.irb
     if STATUS.include?(new_status)
       update(status: new_status)
     else
       errors.add(:status, "Invalid status")
     end
   end
+
   def self.habit_images
     HABIT_IMAGES
   end
