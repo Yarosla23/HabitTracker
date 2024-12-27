@@ -12,14 +12,18 @@
 	</style>
 
 <div class="antialiased sans-serif h-screen">
-	<div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-		<div class="container mx-auto px-4 py-2 md:py-24">
-			<div class="bg-balck text-white rounded-lg shadow overflow-hidden">
 
-				<div class="flex items-center justify-between py-2 px-6">
+	<div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
+		<div class="container mx-auto px-4 py-2 md:py-20 ">
+      
+      <h1 class="text-3xl font-bold mb-4"> Календарь привычки </h1>
+
+			<div class="bg-balck text-white rounded-lg shadow overflow-hidden  bg-zinc-700">
+
+				<div class="flex items-center justify-between py-2 px-6 ">
 					<div>
-						<span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
-						<span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
+						<span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-white-800"></span>
+						<span x-text="year" class="ml-1 text-lg text-white-600 font-normal"></span>
 					</div>
 					<div class="border rounded-lg px-1" style="padding-top: 2px;">
 						<button 
@@ -28,7 +32,7 @@
 							:class="{'cursor-not-allowed opacity-25': month == 0 }"
 							:disabled="month == 0 ? true : false"
 							@click="month--; getNoOfDays()">
-							<svg class="h-6 w-6 text-gray-500 inline-flex leading-none"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<svg class="h-6 w-6 text-gray-200 inline-flex leading-none"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
 							</svg>  
 						</button>
@@ -52,7 +56,7 @@
 							<div style="width: 14.26%" class="px-2 py-2">
 								<div
 									x-text="day" 
-									class="text-gray-600 text-sm uppercase tracking-wide font-bold text-center"></div>
+									class="text-white-600 text-sm uppercase tracking-wide font-bold text-center"></div>
 							</div>
 						</template>
 					</div>
@@ -60,19 +64,19 @@
 					<div class="flex flex-wrap border-t border-l">
 						<template x-for="blankday in blankdays">
 							<div 
-								style="width: 14.28%; height: 120px"
+								style="width: 14.28%; height: 80px"
 								class="text-center border-r border-b px-4 pt-2"	
 							></div>
 						</template>	
 						<template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
-							<div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
+							<div style="width: 14.28%; height: 80px" class="px-4 pt-2 border-r border-b relative">
 								<div
 									@click="showEventModal(date)"
 									x-text="date"
 									class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
-									:class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"	
+									:class="{'bg-cyan-500 text-white': isToday(date) == true, 'text-gray-500 hover:bg-blue-200': isToday(date) == false }"	
 								></div>
-								<div style="height: 80px;" class="overflow-y-auto mt-1">
+								<div style="height: 40px;" class="overflow-y-auto ">
 									<template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">	
 										<div
 											class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
@@ -227,24 +231,34 @@
 				},
 
 				addEvent() {
-					if (this.event_title == '') {
-						return;
-					}
+          if (this.event_title == '') {
+              return;
+          }
 
-					this.events.push({
-						event_date: this.event_date,
-						event_title: this.event_title,
-						event_theme: this.event_theme
-					});
+          const eventExists = this.events.some(event => new Date(event.event_date).toDateString() === new Date(this.event_date).toDateString());
 
-					console.log(this.events);
+          if (eventExists) {
+              alert('В день можно добавлять только одну запись');
+              return;
+          }
 
-					this.event_title = '';
-					this.event_date = '';
-					this.event_theme = 'blue';
+          // Add the event if no event exists
+          this.events.push({
+              event_date: this.event_date,
+              event_title: this.event_title,
+              event_theme: this.event_theme
+          });
 
-					this.openEventModal = false;
-				},
+          console.log(this.events);
+
+          // Clear the form fields
+          this.event_title = '';
+          this.event_date = '';
+          this.event_theme = 'blue';
+
+          this.openEventModal = false;
+      },
+
 
 				getNoOfDays() {
 					let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();

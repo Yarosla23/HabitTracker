@@ -15,7 +15,7 @@ Things you may want to cover:
 
   * curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     sudo apt install -y nodejs
-
+    npm install particles.js
  
 * Configuration
   yarn add @yaireo/tagify 

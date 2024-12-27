@@ -1,0 +1,13 @@
+ru:
+  hello: "Привет"
+  errors:
+    messages:
+      accepted: "должен быть принят"
+      blank: "Не может быть пустым"
+      confirmation: "не совпадает с %{attribute}"
+      incorrect: "неверно"
+      invalid: "недопустимое значение"   
+      taken: "уже занято"
+      too_long: "слишком длинное (максимум %{count} символов)"
+      too_short: "слишком короткое (минимум %{count} символов)"
+      wrong_length: "неправильная длина (должно быть %{count} символов)"

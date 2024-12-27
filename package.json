@@ -3,6 +3,7 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
-    "@yaireo/tagify": "^4.32.1"
+    "@yaireo/tagify": "^4.32.1",
+    "particles.js": "^2.0.0"
   }
 }

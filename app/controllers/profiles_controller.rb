@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
     @profile = @user.build_profile(profile_params)
 
     if @profile.save
-      redirect_to user_profile_path(@user), notice: 'Profile was successfully created.'
+      redirect_to user_profile_path(@user), notice: 'Профиль был создан.'
     else
       render :new
     end
@@ -45,7 +45,7 @@ class ProfilesController < ApplicationController
     @profile = @user.profile
 
     if @profile.update(profile_params)
-      redirect_to user_profile_path(@user), notice: 'Profile was successfully updated.'
+      redirect_to user_profile_path(@user), notice: 'Профиль был обновлен.'
     else
       render :edit
     end
@@ -56,7 +56,7 @@ class ProfilesController < ApplicationController
 
   def set_user
     @user = User.find_by(id: params[:user_id]) || current_user
-    redirect_to root_path, alert: "User not found." unless @user
+    redirect_to root_path, alert: "Пользователь не найден." unless @user
   end
 
   def profile_params

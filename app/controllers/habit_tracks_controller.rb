@@ -5,7 +5,7 @@ class HabitTracksController < ApplicationController
     @habit_track = @habit.habit_tracks.new(habit_track_params)
     if @habit_track.save
       respond_to do |format|
-        format.html { redirect_to @habit, notice: 'Habit track added.' }
+        format.html { redirect_to @habit, notice: 'Трекер привычек был добавлен.' }
         format.js   
       end
     else
@@ -20,7 +20,7 @@ class HabitTracksController < ApplicationController
     @habit_track = @habit.habit_tracks.find(params[:id])
     if @habit_track.update(habit_track_params)
       respond_to do |format|
-        format.html { redirect_to @habit, notice: 'Habit track updated.' }
+        format.html { redirect_to @habit, notice: 'Трекер привычек обновлен' }
         format.js   # Для динамического обновления календаря
       end
     else

@@ -2,10 +2,13 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable,
-  :omniauthable, omniauth_providers: [:telegram, :google_oauth2, :facebook]
+  :omniauthable, omniauth_providers: [:telegram]
   
   has_one :profile, dependent: :destroy
   has_many :habits
+  
+  validates :email, presence: true
+  validates :password, presence: true
 
   def self.from_omniauth(auth)
     user = User.where(telegram_id: auth.uid).first_or_initialize
@@ -22,5 +25,11 @@ class User < ApplicationRecord
 
   def habits_count
     habits.count
+  end
+
+  private
+
+  def password_present?
+    password.present?
   end
 end
