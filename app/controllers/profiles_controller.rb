@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
     if @profile.save
       redirect_to user_profile_path(@user), notice: 'Профиль был создан.'
     else
-      render :new
+      render :new, alert: 'Ошибочка.'
     end
   end
 

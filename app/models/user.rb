@@ -7,9 +7,6 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :habits
   
-  validates :email, presence: true
-  validates :password, presence: true
-
   def self.from_omniauth(auth)
     user = User.where(telegram_id: auth.uid).first_or_initialize
     user.telegram_id = auth.uid

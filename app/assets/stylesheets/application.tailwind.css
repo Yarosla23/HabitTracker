@@ -17,11 +17,12 @@ body {
   padding: 0.5rem;
   border: 1px solid #ddd;
 }
-
+.text-responsive {
+  font-size: clamp(1rem, 5vw, 5rem);
+}
 /*
 
-@layer components {
-  .btn-primary {
+@layer components {я
     @apply py-2 px-4 bg-blue-200;
   }
 }
